@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseApprovalSystem", "ExpenseApprovalSystem.csproj", "{3BABCB98-B650-4FFD-8667-B0C21826D01D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseApprovalSystem.API", "ExpenseApprovalSystem.API\ExpenseApprovalSystem.API.csproj", "{AC3D2C65-D9CE-43EE-8A95-FD54EF48BB9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseApprovalSystem.Application", "ExpenseApprovalSystem.Application\ExpenseApprovalSystem.Application.csproj", "{61200D02-17B8-414D-85C4-B6D559501C11}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3BABCB98-B650-4FFD-8667-B0C21826D01D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BABCB98-B650-4FFD-8667-B0C21826D01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BABCB98-B650-4FFD-8667-B0C21826D01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BABCB98-B650-4FFD-8667-B0C21826D01D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC3D2C65-D9CE-43EE-8A95-FD54EF48BB9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC3D2C65-D9CE-43EE-8A95-FD54EF48BB9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC3D2C65-D9CE-43EE-8A95-FD54EF48BB9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
