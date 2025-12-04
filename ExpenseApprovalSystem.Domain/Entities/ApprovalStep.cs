@@ -17,10 +17,12 @@ namespace ExpenseApprovalSystem.Domain.Entities
         public int ApproverId { get; set; }
         public User Approver { get; set; }
 
-        public string Type { get; set; } // ManagerApproval, FinanceApproval
+        public ApprovalStepType Type { get; set; } // Manager, Finance, HR, Director
 
         public ApprovalStatus Status { get; set; } // Pending, Approved, Rejected
         public DateTime? ActionDate { get; set; } //tarih = onaylama veya reddetme 
-        public string? Comment{ get; set; } 
+        public DateTime? DueDate { get; set; } // Son onay tarihi
+        public string? Comment{ get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

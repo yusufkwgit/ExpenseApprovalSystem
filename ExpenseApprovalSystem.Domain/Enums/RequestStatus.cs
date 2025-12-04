@@ -8,11 +8,10 @@ namespace ExpenseApprovalSystem.Domain.Enums
 {
     public enum RequestStatus
     {
-        Pending = 0,            // beklemede
-        ManagerApproval = 1,    // yonetici onayi
-        FinanceApproval = 2,    // birim onayi
-        Approved = 3,           // onaylandi
-        Rejected = 4,           // redddedili
-        Cancelled = 5           // iptal edildi
+        Pending = 0,            // beklemede - taslak.
+        InProgress = 1,         // onay sürecinde
+        Approved = 2,           // onaylandi
+        Rejected = 3,           // redddedili
+        Cancelled = 4           // iptal edildi
     }
 }

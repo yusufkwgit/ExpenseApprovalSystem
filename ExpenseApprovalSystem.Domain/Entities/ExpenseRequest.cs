@@ -19,9 +19,16 @@ namespace ExpenseApprovalSystem.Domain.Entities
         public string Description { get; set; } 
         public DateTime ExpenseDate { get; set; }
 
-        public RequestStatus Status { get; set; } // durum enum
+        public RequestStatus Status { get; set; }
         public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public int? CreatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
-
+        public List<ApprovalStep> ApprovalSteps { get; set; } = new List<ApprovalStep>();
+        public List<RequestLog> RequestLogs { get; set; } = new List<RequestLog>();
+        public List<ExpenseAttachment> ExpenseAttachments { get; set; } = new List<ExpenseAttachment>();
     }
 }

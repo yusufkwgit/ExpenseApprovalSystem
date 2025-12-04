@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpenseApprovalSystem.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,16 +13,18 @@ namespace ExpenseApprovalSystem.Domain.Entities
         public string NameSurname { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
-        public string Role { get; set; } 
+        public UserRole Role { get; set; } 
 
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
 
         public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public bool IsActive { get; set; } = true;
 
-        public List<ExpenseRequest> ExpenseRequests { get; set; } // GiderTalepleri
-        public List<ApprovalStep> ApprovalSteps { get; set; } // OnayAdimlari (Onaycı olduğu adımlar)
 
-
+        public List<ExpenseRequest> ExpenseRequests { get; set; } = new List<ExpenseRequest>(); // GiderTalepleri
+        public List<ApprovalStep> ApprovalSteps { get; set; } = new List<ApprovalStep>(); // OnayAdimlari (Onaycı olduğu adımlar)
+        public List<RequestLog> RequestLogs { get; set; } = new List<RequestLog>(); // İşlem logları
     }
 }
