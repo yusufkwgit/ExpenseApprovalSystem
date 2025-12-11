@@ -37,10 +37,9 @@ public class ExpenseRequestController : ControllerBase
     {
         var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
 
-        //// E�er token bozuksa veya ID yoksa hata d�n
         if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int currentUserId))
         {
-            return Unauthorized("Token i�inde ge�erli bir User ID bulunamad�.");
+            return Unauthorized("Token içinde geçerli bir User ID bulunamadı.");
         }
         dto.EmployeeId = currentUserId;
         var result = await _mediator.Send(new CreateExpenseRequestCommand(dto, SystemUserId));

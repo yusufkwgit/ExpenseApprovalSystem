@@ -75,47 +75,54 @@ public sealed class ExpenseRequestService : IExpenseRequestService
 
         _context.ExpenseRequests.Add(entity);
 
-        var manager = await _context.Users
-        .FirstOrDefaultAsync(u => u.DepartmentId == employee.DepartmentId
-                               && u.Role == UserRole.Manager
-                               && u.IsActive);
-        if (manager != null)
+        int stepCounter = 1; 
+
+        if (employee.Role != UserRole.Manager)
         {
-            var step1 = new ApprovalStep
+            var manager = await _context.Users
+                .FirstOrDefaultAsync(u => u.DepartmentId == employee.DepartmentId
+                                       && u.Role == UserRole.Manager
+                                       && u.IsActive);
+
+            if (manager != null)
             {
-                ExpenseRequest = entity,
-                StepNumber = 1,
-                ApproverId = manager.UserID,
-                Type = ApprovalStepType.Manager,
-                Status = ApprovalStatus.Pending,
-                CreatedAt = DateTime.UtcNow
-            };
-            _context.ApprovalSteps.Add(step1);
+                AddStepToContext(entity, manager.UserID, ApprovalStepType.Manager, stepCounter);
+                stepCounter++; 
+            }
         }
 
         var financeUser = await _context.Users
-            .FirstOrDefaultAsync(u => u.Role == UserRole.Finance 
-            && u.IsActive
-            && u.UserID != entity.EmployeeId);
+            .FirstOrDefaultAsync(u => u.Role == UserRole.Finance
+                                   && u.IsActive
+                                   && u.UserID != currentUserId);
 
         if (financeUser != null)
         {
-            var step2 = new ApprovalStep
-            {
-                ExpenseRequest = entity,
-                StepNumber = 2,
-                ApproverId = financeUser.UserID,
-                Type = ApprovalStepType.Finance,
-                Status = ApprovalStatus.Pending,
-                CreatedAt = DateTime.UtcNow
-            };
-            _context.ApprovalSteps.Add(step2);
+            AddStepToContext(entity, financeUser.UserID, ApprovalStepType.Finance, stepCounter);
+           
         }
+        else
+        {
+             throw new InvalidOperationException(" başka bir finansçı bulunamadı.");
+        }
+
         await _context.SaveChangesAsync();
 
         return _mapper.Map<ExpenseRequestDTO>(entity);
     }
-
+    private void AddStepToContext(ExpenseRequest request, int approverId, ApprovalStepType type, int stepNum)
+    {
+        var step = new ApprovalStep
+        {
+            ExpenseRequest = request,
+            ApproverId = approverId,
+            Type = type,
+            StepNumber = stepNum,
+            Status = ApprovalStatus.Pending,
+            CreatedAt = DateTime.UtcNow
+        };
+        _context.ApprovalSteps.Add(step);
+    }
     public async Task UpdateAsync(int expenseRequestId, UpdateExpenseRequestDTO dto, int currentUserId)
     {
         ArgumentNullException.ThrowIfNull(dto);

@@ -101,7 +101,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// CORS Ayar� (S�ralama �nemli)
 app.UseCors(x => x
     .AllowAnyMethod()
     .AllowAnyHeader()

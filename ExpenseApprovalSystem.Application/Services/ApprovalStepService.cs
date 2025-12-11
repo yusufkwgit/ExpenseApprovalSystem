@@ -123,7 +123,6 @@ public sealed class ApprovalStepService : IApprovalStepService
         await _context.SaveChangesAsync();
     }
 
-
     public async Task UpdateStepByRequestAsync(int expenseRequestId, UpdateApprovalStepDTO dto, int currentUserId)
     {
         var step = await _context.ApprovalSteps
